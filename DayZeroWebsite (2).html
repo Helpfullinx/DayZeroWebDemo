@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html>
+	<header>
+		<script type="text/javascript" src="./getAccount.js"></script>
+		<div class="imgLogo">
+			<img src="DayZeroLogo.png" alt="Avatar" class="avatar">
+		</div>
+	</header>
+	<body>
+		<div class="LogIn">
+			<ol style="list-style: none">
+				<div class="InternalLogIn">
+				<li>
+					<label for="uname"><b>Username </b></label>
+					<input id="userN" type="username" placeholder="Enter Username" name="uname" required>
+				</li>
+				<li>
+					<label for="psw" style=""><b>Password </b></label>
+					<input id="pass" type="password" placeholder="Enter Password" name="psw" required>
+				</li>
+				</div>
+				<li>
+					<button id="Login" type="submit" class="button LoginBtn" onclick="getPassword(getElementById('userN').value, getElementById('pass'));">Login</button>
+					<button type="button" class="button FrgtPswdBtn" href= "#">Forgot Password</button>
+				</li>
+			</ol>
+		</div>
+	</body>
+<style>
+
+.LogIn {
+  margin: auto;
+  width: 50%;
+  border: 3px solid #7bcbe3;
+  border-radius: 25px;
+  background-color: $f5fdff;
+  padding: 10px;
+  box-shadow: 5px 5px 5px grey;
+  
+}
+
+input[type=username], input[type=password] {
+  width: 90%;
+  padding: 12px 20px 5px;
+  margin: 8px 0px 8px;
+  display: block;
+  border: 1px solid #ccc;
+  box-sizing: border-box;
+}
+
+.LoginBtn {
+  background-color: white; 
+  color: black; 
+  border: 2px solid #008CBA;
+}
+
+.LoginBtn:hover {
+  background-color: #008CBA;
+  color: white;
+}
+
+.FrgtPswdBtn {
+  background-color: white; 
+  color: black; 
+  border: 2px solid #008CBA;
+}
+
+.FrgtPswdBtn:hover {
+  background-color: #008CBA;
+  color: white;
+}
+
+.imgLogo {
+  text-align: center;
+  margin: 24px 0 12px 0;
+}
+
+</style>
+
+</html>
