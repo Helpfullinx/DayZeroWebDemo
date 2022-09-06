@@ -1,11 +1,11 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 	<header>
         <div class="imgLogo">
             <img src="../static/DayZeroLogo.png" alt="Avatar" class="avatar">
         </div>
 	</header>
-    <body>
+    <body class="Background">
         <div class="LogIn">
             <form class="Form" method="POST" action="/login/verify">
                 <div class="InternalLogIn">
@@ -23,48 +23,77 @@
                 </div>
             </form>
         </div>
+        <div id="login_failed_content">
+            {% if failed %}
+                <h1 class="LoginFailed">Login Failed</h1>
+            {% endif %}
+        </div>
     </body>
 <style>
 
+.Background {
+    background-color: #120f24;
+}
+
 .LogIn {
-  margin: auto;
-  width: 50%;
-  border: 3px solid #7bcbe3;
-  border-radius: 25px;
-  background-color: $f5fdff;
-  padding: 10px;
-  box-shadow: 5px 5px 5px grey;
-  
+    margin-top: 5%;
+    margin-left: 25%;
+    width: 50%;
+    border: 5px solid lightblue;
+    border-radius: 10px;
+    padding: 10px;
+    background-color: white;
+}
+
+.LoginFailed {
+    bottom: 0;
+    margin-bottom: 0;
+    left: 0;
+    right: 0;
+    background-color: red;
+    color: white;
+    position: absolute;
 }
 
 .Form {
     margin: auto;
-    padding: 50px
+    padding: 50px;
 }
 
 input[type=username], input[type=password] {
-  width: 90%;
-  padding: 12px 20px 5px;
-  margin: auto;
-  display: block;
-  border: 1px solid #ccc;
-  box-sizing: border-box;
+    color: #120f24;
+    padding: 10px;
+    text-align: left;
+    width: 90%;
+    margin: 20px;
+    display: block;
+    border: 1px solid #ccc;
+    box-sizing: border-box;
 }
 
 .LoginBtn {
-  background-color: white; 
-  color: black; 
-  border: 2px solid #008CBA;
+    margin: 20px;
+    padding: 5px 10px;
+    border-radius: 4px;
+    font-family: Calibri, serif;
+    background-color: white;
+    color: black;
+    border: 2px solid seagreen;
 }
 
 .LoginBtn:hover {
-  background-color: #008CBA;
+  background-color: seagreen;
   color: white;
 }
 
 .imgLogo {
-  text-align: center;
-  margin: 24px 0 12px 0;
+    filter: invert(100%);
+    text-align: center;
+    margin: 24px 0 12px 0;
+}
+
+b {
+   font-family: Calibri, serif;
 }
 
 </style>

@@ -33,6 +33,11 @@ def login():
     return render_template('LoginScreen.html')
 
 
+@app.route('/login/failed', methods=['GET', 'POST'])
+def login_failed():
+    failed = 1
+    return render_template('LoginScreen.html', failed=failed)
+
 @app.route('/')
 def home():
     return render_template('LoginRedirect.html')
