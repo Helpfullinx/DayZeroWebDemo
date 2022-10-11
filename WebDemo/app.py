@@ -1,12 +1,10 @@
-from flask import Flask, render_template, request
 import mysql.connector
-from mysql.connector import Error
+from flask import Flask, render_template, request
 
 app = Flask(__name__)
 
 
-@app.route('/connect/<query>')
-def connect(query:str):
+def connect():
     """ Connect to MySQL database """
 
     conn = mysql.connector.connect(host='localhost',
@@ -14,23 +12,12 @@ def connect(query:str):
                                    user='root',
                                    password='pass')
 
-    cur = conn.cursor()
-    q = 'SELECT * FROM mydata.tbl'.replace("*", query)
-    print(q)
-    cur.execute(q)
-    return cur.fetchall()
+    return conn
 
 
 @app.route('/login/verify', methods=['POST'])
 def login_verify():
-    file = (open(r"static/Accounts.txt", "r")).read()
-    usernames = []
-    passwords = []
-
-    words = file.splitlines()
-    for i in words:
-        usernames.append(i.split(' ')[0])
-        passwords.append(i.split(' ')[1])
+    conn = connect()
 
     user = 0
     passwd = 0
@@ -39,11 +26,14 @@ def login_verify():
         user = request.form.get('username')
         passwd = request.form.get('password')
 
-    for i in range(len(usernames)):
-        if user == usernames[i] and passwd == passwords[i]:
-            return render_template('LoginApproved.html')
+    cur = conn.cursor()
+    q = "SELECT * FROM mydata.tbl WHERE Username = '**' AND Password = '*/';".replace("**", user).replace("*/", passwd)
+    cur.execute(q)
 
-    return render_template('LoginFailed.html')
+    if cur.fetchall():
+        return render_template('LoginApproved.html')
+    else:
+        return render_template('LoginFailed.html')
 
 
 @app.route('/login')
