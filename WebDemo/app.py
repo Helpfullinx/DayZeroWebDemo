@@ -1,6 +1,24 @@
 from flask import Flask, render_template, request
+import mysql.connector
+from mysql.connector import Error
 
 app = Flask(__name__)
+
+
+@app.route('/connect/<query>')
+def connect(query:str):
+    """ Connect to MySQL database """
+
+    conn = mysql.connector.connect(host='localhost',
+                                   database='mydata',
+                                   user='root',
+                                   password='pass')
+
+    cur = conn.cursor()
+    q = 'SELECT * FROM mydata.tbl'.replace("*", query)
+    print(q)
+    cur.execute(q)
+    return cur.fetchall()
 
 
 @app.route('/login/verify', methods=['POST'])
@@ -37,6 +55,7 @@ def login():
 def login_failed():
     failed = 1
     return render_template('LoginScreen.html', failed=failed)
+
 
 @app.route('/')
 def home():
