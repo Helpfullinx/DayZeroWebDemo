@@ -1,0 +1,1 @@
+docker run --rm --volumes-from mysql -v $(pwd):/backup busybox tar cvf /backup/backup.tar /var/lib/mysql
